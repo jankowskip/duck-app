@@ -1,0 +1,9 @@
+<ul class="collection">
+  <li class="collection-item avatar" *ngFor="let duck of ducks">
+    <img src="{{duck.imageUrl}}" class="circle">
+    <span class="title">{{duck.name}}</span>
+    <p>{{duck.type}}</p>
+    <a (click)="onRemove(duck.id)" class="pointer secondary-content"><i class="material-icons">delete</i></a>
+  </li>
+</ul>
+
