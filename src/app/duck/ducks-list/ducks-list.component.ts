@@ -1,39 +1,35 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {DuckHttpService} from "../duck-http.service";
-import {Duck} from "../duck.model";
-import {Observable, Subscription} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import {DuckService} from "../../shared/services/duck.service";
+import {IDuck} from "../../shared/models/duck.model";
 
 @Component({
   selector: 'app-ducks-list',
   templateUrl: './ducks-list.component.html',
   styleUrls: ['./ducks-list.component.css']
 })
-export class DucksListComponent implements OnInit, OnDestroy{
+export class DucksListComponent implements OnInit {
 
-  constructor(private duckHttp: DuckHttpService) {
-  }
+  ducks: IDuck[];
 
-  subscription : Subscription;
-  ducks: Duck[];
+  constructor(private duckService: DuckService) { }
 
   ngOnInit() {
     this.getDucks();
-     this.subscription = this.duckHttp.ducksChanged.subscribe(
+    this.duckService.ducksChanged.subscribe(
       () => this.getDucks()
-    );
-  }
-
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
-
-  private getDucks() {
-    this.duckHttp.getDucks().subscribe(
-      (ducks: Duck[]) => this.ducks = ducks
     )
   }
 
-  onRemove(id: number) {
-    this.duckHttp.deleteDuck(id);
+  getDucks(){
+    this.duckService.getDucks().subscribe(
+      (ducks: IDuck[]) => this.ducks = ducks
+    )
   }
+
+  deleteDuck(id: number){
+    this.duckService.deleteDuck(id);
+  }
+
+
+
 }

@@ -1,0 +1,24 @@
+<div class="row">
+  <form class="col s12" [formGroup]="duckForm" (ngSubmit)="submit()">
+    <div class="input-field col s6">
+      <input class="validate" type="text" id="name" formControlName="name">
+      <label for="name">Name</label>
+    </div>
+    <div class="input-field col s6">
+      <input class="validate" type="text" id="type" formControlName="type">
+      <label for="type">Type</label>
+    </div>
+    <div class="input-field col s6">
+      <input class="validate" type="text" id="image" formControlName="imageUrl" #imag>
+      <label for="image">Image Url</label>
+    </div>
+    <div class="col s1">
+      <img [src]="this.duckForm.value.imageUrl" class="circle responsive-img avatar">
+    </div>
+    <div class="row right-align">
+      <button class="btn waves-light waves-effect">
+        Send<i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</div>

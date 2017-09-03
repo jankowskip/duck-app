@@ -6,14 +6,16 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
 import { DucksListComponent } from './duck/ducks-list/ducks-list.component';
-import {DuckHttpService} from "./duck/duck-http.service";
-import { AddDuckComponent } from './duck/add-duck/add-duck.component';
+import {DuckService} from "./shared/services/duck.service";
+import { FormDuckComponent } from './duck/form-duck/form-duck.component';
+import { DucksComponent } from 'app/duck/ducks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DucksListComponent,
-    AddDuckComponent
+    FormDuckComponent,
+    DucksComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import { AddDuckComponent } from './duck/add-duck/add-duck.component';
     HttpModule,
     MaterializeModule
   ],
-  providers: [DuckHttpService],
+  providers: [DuckService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
