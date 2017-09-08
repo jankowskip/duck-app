@@ -1,19 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
 import { DucksListComponent } from './duck/ducks-list/ducks-list.component';
-import {DuckHttpService} from "./duck/duck-http.service";
+import { DuckService } from "./shared/services/duck.service";
 import { AddDuckComponent } from './duck/add-duck/add-duck.component';
+import { DuckComponent } from './duck/duck.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DucksListComponent,
-    AddDuckComponent
+    AddDuckComponent,
+    DuckComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import { AddDuckComponent } from './duck/add-duck/add-duck.component';
     HttpModule,
     MaterializeModule
   ],
-  providers: [DuckHttpService],
+  providers: [DuckService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,8 @@
+<app-ducks-list
+  [ducks]="ducks$ | async"
+  (duckRemoved)="removeDuck($event)"
+  >
+</app-ducks-list>
+<app-add-duck
+  (duckAdded)="addDuck($event)"
+></app-add-duck>

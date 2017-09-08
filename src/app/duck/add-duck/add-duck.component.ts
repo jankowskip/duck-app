@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {DuckHttpService} from "../duck-http.service";
+import { Duck } from 'app/shared/models/duck.model';
 
 @Component({
   selector: 'app-add-duck',
@@ -9,9 +9,10 @@ import {DuckHttpService} from "../duck-http.service";
 })
 export class AddDuckComponent implements OnInit {
 
+  @Output() duckAdded: EventEmitter<Duck> = new EventEmitter();
   duckForm: FormGroup;
 
-  constructor(private httpDuck: DuckHttpService) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -19,12 +20,12 @@ export class AddDuckComponent implements OnInit {
   }
 
   onSubmit() {
-    this.httpDuck.addDuck(this.duckForm.value);
+    this.duckAdded.emit(this.duckForm.value);
   }
 
   initForm() {
     this.duckForm = new FormGroup({
-      'name': new FormControl('', Validators.required),
+      'name': new FormControl('', [Validators.required, Validators.max(10)]),
       'type': new FormControl('', Validators.required),
       'imageUrl': new FormControl('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb9ouakKFPM_33GX5Uv_juwVh61-kjqDgR8VtirosLjlM533jaFg', Validators.required)
     })
